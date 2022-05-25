@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "rhodium",
+  "version": "${version}",
+
+  "name": "Rhodium",
+  "description": "Here we go, revival of Barium, but Rhodium",
+  "authors": [
+    "iBadgerLord"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/rhodium/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ibadgerlord.rhodium.Rhodium"
+    ],
+    "client": [
+      "net.ibadgerlord.rhodium.RhodiumClient"
+    ]
+  },
+  "mixins": [
+    "rhodium.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
