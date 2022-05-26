@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rhodium:item/grand_bottle",
+    "layer1": "rhodium:item/grand_potion_overlay"
+  }
+}

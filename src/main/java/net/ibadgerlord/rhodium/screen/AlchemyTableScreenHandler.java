@@ -29,12 +29,12 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
         this.propertyDelegate = propertyDelegate;
 
         // Where our slots are placed
-        this.addSlot(new Slot(inventory, 0, 34, 17));
-        this.addSlot(new Slot(inventory, 1, 84, 17));
-        this.addSlot(new Slot(inventory, 2, 34, 53));
-        this.addSlot(new Slot(inventory, 3, 84, 53));
-        this.addSlot(new Slot(inventory, 4, 59, 35));
-        this.addSlot(new AlchemyTableOutput(inventory, 5, 122, 35));
+        this.addSlot(new Slot(inventory, 0, 24, 17));
+        this.addSlot(new Slot(inventory, 1, 74, 17));
+        this.addSlot(new Slot(inventory, 2, 24, 53));
+        this.addSlot(new Slot(inventory, 3, 74, 53));
+        this.addSlot(new Slot(inventory, 4, 49, 35));
+        this.addSlot(new AlchemyTableOutput(inventory, 5, 132, 35));
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
 

@@ -37,7 +37,7 @@ public class AlchemyTableScreen extends HandledScreen<AlchemyTableScreenHandler>
         int p = handler.getProgress();
         int pp = MathHelper.clamp(((512 - p) * 24) / 512, 0, 512);
         if (handler.isCrafting()) {
-            drawTexture(matrices, x + 89, y + 34, 176, 0, pp, 17);
+            drawTexture(matrices, x + 97, y + 34, 176, 0, pp, 17);
         }
 
     }
