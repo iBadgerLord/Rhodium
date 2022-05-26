@@ -13,8 +13,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class AlchemyTableScreen extends HandledScreen<AlchemyTableScreenHandler> {
 
-    private static final Identifier TEXTURE =
-            new Identifier(Rhodium.MOD_ID, "textures/gui/container/alchemy_table.png");
+    private static final Identifier TEXTURE = new Identifier(Rhodium.MOD_ID, "textures/gui/container/alchemy_table.png");
 
     public AlchemyTableScreen(AlchemyTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -36,15 +35,9 @@ public class AlchemyTableScreen extends HandledScreen<AlchemyTableScreenHandler>
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         int p = handler.getProgress();
-        int pp = MathHelper.clamp(((256 - p) * 32) / 256, 0, 256);
+        int pp = MathHelper.clamp(((64 - p) * 22) / 64, 0, 64);
         if (handler.isCrafting()) {
-            drawTexture(matrices, x + 72, y + 27, 176, 0, pp, 32);
-        }
-
-        int f = handler.getFuel();
-        int fp = MathHelper.clamp((18 * f + 20 - 1) / 20, 0, 18);
-        if (fp > 0) {
-            this.drawTexture(matrices, x + 21, y + 51, 176, 32, fp, 4);
+            drawTexture(matrices, x + 90, y + 35, 176, 0, pp, 15);
         }
 
     }

@@ -9,6 +9,6 @@ import net.minecraft.util.Identifier;
 public class RhodiumGroupRegistry {
 
     public static final ItemGroup RHODIUM_GROUP = FabricItemGroupBuilder.build(new Identifier(Rhodium.MOD_ID, "rhodium"),
-            () -> new ItemStack(RhodiumItemRegistry.ACORN));
+            () -> new ItemStack(RhodiumItemRegistry.GRAND_BOTTLE));
 
 }

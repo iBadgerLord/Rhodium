@@ -1,7 +1,5 @@
 package net.ibadgerlord.rhodium.screen;
 
-import net.ibadgerlord.rhodium.screen.slot.AlchemyTableAdditives;
-import net.ibadgerlord.rhodium.screen.slot.AlchemyTableFuel;
 import net.ibadgerlord.rhodium.screen.slot.AlchemyTableOutput;
 import net.ibadgerlord.rhodium.util.init.RhodiumScreenHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +7,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -21,24 +18,23 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
 
     public AlchemyTableScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(7), new ArrayPropertyDelegate(2));
+        this(syncId, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(1));
     }
 
     public AlchemyTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(RhodiumScreenHandlerRegistry.ALCHEMY_TABLE_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 7);
+        checkSize(inventory, 6);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = propertyDelegate;
 
         // Where our slots are placed
-        this.addSlot(new AlchemyTableAdditives(inventory, 0, 54, 17));
-        this.addSlot(new AlchemyTableAdditives(inventory, 1, 106, 17));
-        this.addSlot(new AlchemyTableAdditives(inventory, 2, 54, 53));
-        this.addSlot(new AlchemyTableAdditives(inventory, 3, 106, 53));
-        this.addSlot(new AlchemyTableAdditives(inventory, 4, 80, 35));
-        this.addSlot(new AlchemyTableOutput(inventory, 5, 138, 35));
-        this.addSlot(new AlchemyTableFuel(inventory, 6, 22, 31));
+        this.addSlot(new Slot(inventory, 0, 34, 17));
+        this.addSlot(new Slot(inventory, 1, 84, 17));
+        this.addSlot(new Slot(inventory, 2, 34, 53));
+        this.addSlot(new Slot(inventory, 3, 84, 53));
+        this.addSlot(new Slot(inventory, 4, 59, 35));
+        this.addSlot(new AlchemyTableOutput(inventory, 5, 122, 35));
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
 
@@ -50,18 +46,37 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
         return propertyDelegate.get(0) > 0;
     }
 
-    public int getFuel() {
-        return this.propertyDelegate.get(1);
-    }
-
     public int getProgress() {
         return this.propertyDelegate.get(0);
     }
 
-
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
+    }
+
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int invSlot) {
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+        if (slot != null && slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            newStack = originalStack.copy();
+            if (invSlot < this.inventory.size()) {
+                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (originalStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+        return newStack;
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

@@ -15,9 +15,4 @@ public class AlchemyTableOutput extends Slot {
         return false;
     }
 
-    @Override
-    public int getMaxItemCount() {
-        return 1;
-    }
-
 }

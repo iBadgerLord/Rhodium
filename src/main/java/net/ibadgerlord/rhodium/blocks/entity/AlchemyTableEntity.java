@@ -28,9 +28,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
     private int progress = 0;
-    private int fuel = 0;
 
     protected final PropertyDelegate propertyDelegate = new PropertyDelegate() {
         @Override
@@ -38,9 +37,6 @@ public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandle
             switch (index) {
                 case 0: {
                     return AlchemyTableEntity.this.progress;
-                }
-                case 1: {
-                    return AlchemyTableEntity.this.fuel;
                 }
                 default: {
                     return 0;
@@ -57,16 +53,12 @@ public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandle
                     break;
 
                 }
-                case 1: {
-                    AlchemyTableEntity.this.fuel = value;
-                    break;
-                }
             }
         }
 
         @Override
         public int size() {
-            return 2;
+            return 1;
         }
     };
 
@@ -95,7 +87,6 @@ public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandle
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("alchemy_table.progress");
-        fuel = nbt.getInt("alchemy_table.fuel");
     }
 
     @Override
@@ -103,35 +94,26 @@ public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandle
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("alchemy_table.progress", progress);
-        nbt.putInt("alchemy_table.fuel", fuel);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, AlchemyTableEntity entity) {
-        ItemStack itemStack6 = entity.inventory.get(6);
         ItemStack itemStack5 = entity.inventory.get(5);
 
-        if (entity.fuel <= 0 && itemStack6.isOf(Items.AMETHYST_SHARD)) {
-            entity.fuel = 20;
-            itemStack6.decrement(1);
-        }
-
         boolean bl = hasRecipe(entity);
-        boolean bl2 = entity.fuel > 0;
-        boolean bl3 = entity.progress > 0;
-        boolean bl4 = (itemStack5.getCount() == 0);
-        boolean bl5 = hasRecipe(entity);
+        boolean bl2 = entity.progress > 0;
+        boolean bl3 = itemStack5.getCount() != itemStack5.getMaxCount();
+        boolean bl4 = hasRecipe(entity);
 
-        if (bl3 && bl5) {
+        if (bl2 && bl3 && bl4) {
             --entity.progress;
             if (bl && (entity.progress == 0)) {
                 craftItem(entity);
                 world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 2.0f, 0.5f + world.random.nextFloat() * 1.2f);
             }
-        } else if (bl3 && !bl5) {
+        } else if (bl2 && !bl4) {
             entity.progress = 0;
-        } else if (bl && bl2) {
-            --entity.fuel;
-            entity.progress = 256;
+        } else if (bl) {
+            entity.progress = 64;
         }
 
     }
