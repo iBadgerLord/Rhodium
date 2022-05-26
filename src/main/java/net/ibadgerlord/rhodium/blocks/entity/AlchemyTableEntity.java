@@ -113,7 +113,7 @@ public class AlchemyTableEntity extends BlockEntity implements NamedScreenHandle
         } else if (bl2 && !bl4) {
             entity.progress = 0;
         } else if (bl) {
-            entity.progress = 64;
+            entity.progress = 512;
         }
 
     }
