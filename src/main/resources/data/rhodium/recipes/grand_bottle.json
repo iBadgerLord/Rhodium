@@ -1,23 +1,26 @@
 {
-  "type": "rhodium:alchemy_table",
-  "ingredients": [
-    {
-      "item": "minecraft:blaze_powder"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "GAG",
+        " N "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:blaze_powder"
+        },
+        "G": {
+            "item": "minecraft:gold_nugget"
+        },
+        "A": {
+            "item": "minecraft:glass_bottle"
+        },
+        "N": {
+            "item": "minecraft:amethyst_shard"
+        }
     },
-    {
-      "item": "minecraft:gold_nugget"
-    },
-    {
-      "item": "minecraft:gold_nugget"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:glass_bottle"
+    "result": {
+        "item": "rhodium:grand_bottle",
+        "count": 1
     }
-  ],
-  "output": {
-    "item": "rhodium:grand_bottle"
-  }
 }
