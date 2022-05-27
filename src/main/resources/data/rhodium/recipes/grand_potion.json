@@ -1,0 +1,23 @@
+{
+  "type": "rhodium:alchemy_table",
+  "ingredients": [
+    {
+      "item": "minecraft:small_amethyst_bud"
+    },
+    {
+      "item": "rhodium:warped_wart"
+    },
+    {
+      "item": "minecraft:nether_wart"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "rhodium:grand_bottle"
+    }
+  ],
+  "output": {
+    "item": "rhodium:grand_potion"
+  }
+}

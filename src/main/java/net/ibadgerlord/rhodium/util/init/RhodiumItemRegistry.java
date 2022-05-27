@@ -15,13 +15,15 @@ public class RhodiumItemRegistry {
         return Registry.register(Registry.ITEM, new Identifier(Rhodium.MOD_ID, name), item);
     }
 
-
     // Item naming and registering
     public static final Item GRAND_BOTTLE = registerItem("grand_bottle",
-            new Item(new FabricItemSettings().group(RhodiumGroupRegistry.RHODIUM_GROUP).maxCount(16)));
+            new Item(new FabricItemSettings().maxCount(16).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
 
     public static final Item GRAND_POTION = registerItem("grand_potion",
-            new GrandPotionItem(new FabricItemSettings().group(RhodiumGroupRegistry.RHODIUM_GROUP).maxCount(1)));
+            new GrandPotionItem(new FabricItemSettings().maxCount(1).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+
+    public static final Item WARPED_WART = registerItem("warped_wart",
+            new Item(new FabricItemSettings().group(RhodiumGroupRegistry.RHODIUM_GROUP)));
 
     public static void registerRhodiumItems() { }
 
