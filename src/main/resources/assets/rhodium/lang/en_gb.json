@@ -18,6 +18,9 @@
   "block.rhodium.palladium_ore" : "Palladium Ore",
   "block.rhodium.deepslate_palladium_ore" : "Deepslate Palladium Ore",
   "block.rhodium.orichalcum_ore" : "Orichalcum Ore",
-  "block.rhodium.deepslate_orichalcum_ore" : "Deepslate Orichalcum Ore"
+  "block.rhodium.deepslate_orichalcum_ore" : "Deepslate Orichalcum Ore",
+
+  "advancements.hardmode.root.title" : "Hardmode",
+  "advancements.hardmode.root.description" : "The new stage unlocked"
 
 }
