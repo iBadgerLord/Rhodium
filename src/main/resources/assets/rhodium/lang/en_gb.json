@@ -20,7 +20,5 @@
   "block.rhodium.orichalcum_ore" : "Orichalcum Ore",
   "block.rhodium.deepslate_orichalcum_ore" : "Deepslate Orichalcum Ore",
 
-  "advancements.hardmode.root.title" : "Hardmode",
-  "advancements.hardmode.root.description" : "The new stage unlocked"
-
+  "item.rhodium.copper_brush" : "Copper Brush"
 }

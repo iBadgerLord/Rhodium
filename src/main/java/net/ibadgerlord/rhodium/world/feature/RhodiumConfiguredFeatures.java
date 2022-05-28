@@ -1,8 +1,6 @@
 package net.ibadgerlord.rhodium.world.feature;
 
-import net.ibadgerlord.rhodium.blocks.MysteriousDeepslate;
-import net.ibadgerlord.rhodium.blocks.MysteriousStone;
-import net.ibadgerlord.rhodium.util.init.RhodiumBlockRegistry;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
 
@@ -12,27 +10,27 @@ public class RhodiumConfiguredFeatures {
 
     public static final List<OreFeatureConfig.Target> OVERWORLD_COBALT_ORE = List.of(
             OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_STONE.getDefaultState().with(MysteriousStone.STONE, 1)),
+                    Blocks.STONE.getDefaultState()),
             OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_DEEPSLATE.getDefaultState().with(MysteriousDeepslate.DEEPSLATE, 1))
+                    Blocks.STONE.getDefaultState())
     );
     public static final List<OreFeatureConfig.Target> OVERWORLD_MYTHRIL_ORE = List.of(
             OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_STONE.getDefaultState().with(MysteriousStone.STONE, 2)),
+                    Blocks.STONE.getDefaultState()),
             OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_DEEPSLATE.getDefaultState().with(MysteriousDeepslate.DEEPSLATE, 2))
+                    Blocks.STONE.getDefaultState())
     );
     public static final List<OreFeatureConfig.Target> OVERWORLD_PALLADIUM_ORE = List.of(
             OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_STONE.getDefaultState().with(MysteriousStone.STONE, 3)),
+                    Blocks.STONE.getDefaultState()),
             OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_DEEPSLATE.getDefaultState().with(MysteriousDeepslate.DEEPSLATE, 3))
+                    Blocks.STONE.getDefaultState())
     );
     public static final List<OreFeatureConfig.Target> OVERWORLD_ORICHALCUM_ORE = List.of(
             OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_STONE.getDefaultState().with(MysteriousStone.STONE, 4)),
+                    Blocks.STONE.getDefaultState()),
             OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                    RhodiumBlockRegistry.MYSTERIOUS_DEEPSLATE.getDefaultState().with(MysteriousDeepslate.DEEPSLATE, 4))
+                    Blocks.STONE.getDefaultState())
     );
 
 
