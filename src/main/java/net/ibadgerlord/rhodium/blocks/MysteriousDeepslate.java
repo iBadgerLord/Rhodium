@@ -37,16 +37,6 @@ public class MysteriousDeepslate extends BlockWithEntity implements BlockEntityP
 
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (state.get(DEEPSLATE) == 0) {
-            world.setBlockState(pos, state.with(DEEPSLATE, 1), Block.NOTIFY_ALL);
-        } else if (state.get(DEEPSLATE) == 1) {
-            world.setBlockState(pos, state.with(DEEPSLATE, 2), Block.NOTIFY_ALL);
-        } else if (state.get(DEEPSLATE) == 2) {
-            world.setBlockState(pos, state.with(DEEPSLATE, 3), Block.NOTIFY_ALL);
-        } else if (state.get(DEEPSLATE) == 3) {
-            world.setBlockState(pos, state.with(DEEPSLATE, 4), Block.NOTIFY_ALL);
-        }
-
         if ((itemStack.isOf(Items.NETHER_STAR)) && !state.get(HARDMODE)) {
             world.setBlockState(pos, state.with(HARDMODE, true), Block.NOTIFY_ALL);
         }

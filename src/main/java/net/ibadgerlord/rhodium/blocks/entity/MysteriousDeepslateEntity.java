@@ -16,6 +16,7 @@ public class MysteriousDeepslateEntity extends BlockEntity {
 
     public static void tick(World world, BlockPos pos, BlockState state, MysteriousDeepslateEntity entity) {
 
+
         boolean hardmode = state.get(MysteriousDeepslate.HARDMODE);
         int stone = state.get(MysteriousDeepslate.DEEPSLATE);
 

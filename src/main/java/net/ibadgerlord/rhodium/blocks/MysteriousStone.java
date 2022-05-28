@@ -37,16 +37,6 @@ public class MysteriousStone extends BlockWithEntity implements BlockEntityProvi
 
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (state.get(STONE) == 0) {
-            world.setBlockState(pos, state.with(STONE, 1), Block.NOTIFY_ALL);
-        } else if (state.get(STONE) == 1) {
-            world.setBlockState(pos, state.with(STONE, 2), Block.NOTIFY_ALL);
-        } else if (state.get(STONE) == 2) {
-            world.setBlockState(pos, state.with(STONE, 3), Block.NOTIFY_ALL);
-        } else if (state.get(STONE) == 3) {
-            world.setBlockState(pos, state.with(STONE, 4), Block.NOTIFY_ALL);
-        }
-
         if ((itemStack.isOf(Items.NETHER_STAR)) && !state.get(HARDMODE)) {
             world.setBlockState(pos, state.with(HARDMODE, true), Block.NOTIFY_ALL);
         }
