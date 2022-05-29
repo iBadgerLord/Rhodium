@@ -1,4 +1,4 @@
-package net.ibadgerlord.rhodium.items;
+package net.ibadgerlord.rhodium.items.brush;
 
 import net.ibadgerlord.rhodium.blocks.MysteriousDeepslate;
 import net.ibadgerlord.rhodium.blocks.MysteriousStone;
@@ -13,9 +13,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BrushItem extends Item {
+public class PalladiumBrushItem extends Item {
 
-    public BrushItem(Settings settings) {
+    public PalladiumBrushItem(Settings settings) {
         super(settings);
     }
 
@@ -30,7 +30,6 @@ public class BrushItem extends Item {
 
         if (block instanceof MysteriousStone) {
             int stone = blockState.get(MysteriousStone.STONE);
-
             if (stone == 1) {
                 world.setBlockState(blockPos, RhodiumBlockRegistry.COBALT_ORE.getDefaultState(), 1);
             } else if (stone == 2) {
@@ -40,7 +39,6 @@ public class BrushItem extends Item {
             } else if (stone == 4) {
                 world.setBlockState(blockPos, RhodiumBlockRegistry.ORICHALCUM_ORE.getDefaultState(), 1);
             }
-
             if (playerEntity != null) {
                 itemStack.damage(1, playerEntity, (player) -> {
                     player.sendToolBreakStatus(context.getHand());
@@ -49,7 +47,6 @@ public class BrushItem extends Item {
             return ActionResult.success(world.isClient);
         } else if (block instanceof MysteriousDeepslate) {
             int deepslate = blockState.get(MysteriousDeepslate.DEEPSLATE);
-
             if (deepslate == 1) {
                 world.setBlockState(blockPos, RhodiumBlockRegistry.DEEPSLATE_COBALT_ORE.getDefaultState(), 1);
             } else if (deepslate == 2) {
@@ -59,17 +56,14 @@ public class BrushItem extends Item {
             } else if (deepslate == 4) {
                 world.setBlockState(blockPos, RhodiumBlockRegistry.DEEPSLATE_ORICHALCUM_ORE.getDefaultState(), 1);
             }
-
             if (playerEntity != null) {
-                itemStack.damage(2, playerEntity, (player) -> {
+                itemStack.damage(1, playerEntity, (player) -> {
                     player.sendToolBreakStatus(context.getHand());
                 });
             }
             return ActionResult.success(world.isClient);
         }
-
         return super.useOnBlock(context);
-
     }
 
 }

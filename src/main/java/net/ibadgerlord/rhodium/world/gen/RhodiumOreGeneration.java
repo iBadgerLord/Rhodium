@@ -16,7 +16,6 @@ public class RhodiumOreGeneration {
                 GenerationStep.Feature.UNDERGROUND_ORES, RhodiumPlacedFeatures.PALLADIUM_ORE_PLACED.getKey().get());
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, RhodiumPlacedFeatures.ORICHALCUM_ORE_PLACED.getKey().get());
-
     }
 
 }

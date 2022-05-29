@@ -20,5 +20,8 @@
   "block.rhodium.orichalcum_ore" : "Orichalcum Ore",
   "block.rhodium.deepslate_orichalcum_ore" : "Deepslate Orichalcum Ore",
 
-  "item.rhodium.copper_brush" : "Copper Brush"
+  "item.rhodium.cobalt_brush" : "Cobalt Brush",
+  "item.rhodium.mythril_brush" : "Mythril Brush",
+  "item.rhodium.palladium_brush" : "Palladium Brush",
+  "item.rhodium.orichalcum_brush" : "Orichalcum Brush"
 }
