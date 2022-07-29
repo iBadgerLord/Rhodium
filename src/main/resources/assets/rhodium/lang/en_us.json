@@ -3,25 +3,7 @@
 
   "item.rhodium.grand_bottle" : "Grand Bottle",
   "item.rhodium.grand_potion" : "Grand Potion",
-  "item.rhodium.warped_wart" : "Warped Wart",
 
   "block.rhodium.alchemy_table" : "Alchemy Table",
-  "container.alchemy_table": "Alchemy Table",
-
-  "block.rhodium.mysterious_stone" : "Mysterious Stone",
-  "block.rhodium.mysterious_deepslate" : "Mysterious Deepslate",
-
-  "block.rhodium.cobalt_ore" : "Cobalt Ore",
-  "block.rhodium.deepslate_cobalt_ore" : "Deepslate Cobalt Ore",
-  "block.rhodium.mythril_ore" : "Mythril Ore",
-  "block.rhodium.deepslate_mythril_ore" : "Deepslate Mythril Ore",
-  "block.rhodium.palladium_ore" : "Palladium Ore",
-  "block.rhodium.deepslate_palladium_ore" : "Deepslate Palladium Ore",
-  "block.rhodium.orichalcum_ore" : "Orichalcum Ore",
-  "block.rhodium.deepslate_orichalcum_ore" : "Deepslate Orichalcum Ore",
-
-  "item.rhodium.cobalt_brush" : "Cobalt Brush",
-  "item.rhodium.mythril_brush" : "Mythril Brush",
-  "item.rhodium.palladium_brush" : "Palladium Brush",
-  "item.rhodium.orichalcum_brush" : "Orichalcum Brush"
+  "container.alchemy_table": "Alchemy Table"
 }

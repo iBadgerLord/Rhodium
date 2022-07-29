@@ -3,9 +3,7 @@ package net.ibadgerlord.rhodium.util.init;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.ibadgerlord.rhodium.Rhodium;
-import net.ibadgerlord.rhodium.blocks.AlchemyTable;
-import net.ibadgerlord.rhodium.blocks.MysteriousDeepslate;
-import net.ibadgerlord.rhodium.blocks.MysteriousStone;
+import net.ibadgerlord.rhodium.blocks.AlchemyTableBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -29,30 +27,10 @@ public class RhodiumBlockRegistry {
 
     // Block naming and registering
     public static final Block ALCHEMY_TABLE = registerBlock("alchemy_table",
-            new AlchemyTable(FabricBlockSettings.copyOf(Blocks.ENCHANTING_TABLE).nonOpaque()
-                    .luminance((state) -> state.get(AlchemyTable.LIT) ? 7 : 0)), RhodiumGroupRegistry.RHODIUM_GROUP);
-
-    public static final Block MYSTERIOUS_STONE = registerBlock("mysterious_stone",
-            new MysteriousStone(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block MYSTERIOUS_DEEPSLATE = registerBlock("mysterious_deepslate",
-            new MysteriousDeepslate(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-
-    public static final Block COBALT_ORE = registerBlock("cobalt_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block DEEPSLATE_COBALT_ORE = registerBlock("deepslate_cobalt_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block MYTHRIL_ORE = registerBlock("mythril_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block DEEPSLATE_MYTHRIL_ORE = registerBlock("deepslate_mythril_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block PALLADIUM_ORE = registerBlock("palladium_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block DEEPSLATE_PALLADIUM_ORE = registerBlock("deepslate_palladium_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block ORICHALCUM_ORE = registerBlock("orichalcum_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
-    public static final Block DEEPSLATE_ORICHALCUM_ORE = registerBlock("deepslate_orichalcum_ore",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)), RhodiumGroupRegistry.RHODIUM_GROUP);
+            new AlchemyTableBlock(FabricBlockSettings.of(Material.STONE, MapColor.PURPLE)
+                    .requiresTool().strength(5.0F, 1200.0F)
+                    .luminance((state) -> state.get(AlchemyTableBlock.LIT) ? 7 : 0)),
+            RhodiumGroupRegistry.RHODIUM_GROUP);
 
     public static void registerRhodiumBlocks() { }
 

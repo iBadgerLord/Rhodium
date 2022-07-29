@@ -1,35 +1,168 @@
 {
+
   "variants": {
 
-    "has_book=false,facing=north,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table"},
-    "has_book=false,facing=east,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table", "y": 90},
-    "has_book=false,facing=south,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table", "y": 180},
-    "has_book=false,facing=west,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table", "y": 270},
+    "books=0,candles=0,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_lit"},
+    "books=0,candles=0,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_lit", "y": 90},
+    "books=0,candles=0,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_lit", "y": 180},
+    "books=0,candles=0,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_lit", "y": 270},
 
-    "has_book=true,facing=north,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book"},
-    "has_book=true,facing=east,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book", "y": 90},
-    "has_book=true,facing=south,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book", "y": 180},
-    "has_book=true,facing=west,candles=0,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book", "y": 270},
+    "books=0,candles=0,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_unlit"},
+    "books=0,candles=0,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_unlit", "y": 90},
+    "books=0,candles=0,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_unlit", "y": 180},
+    "books=0,candles=0,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_null_regular_unlit", "y": 270},
 
-    "has_book=true,facing=north,candles=1,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_one"},
-    "has_book=true,facing=east,candles=1,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_one", "y": 90},
-    "has_book=true,facing=south,candles=1,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_one", "y": 180},
-    "has_book=true,facing=west,candles=1,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_one", "y": 270},
+    "books=0,candles=1,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_lit"},
+    "books=0,candles=1,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_lit", "y": 90},
+    "books=0,candles=1,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_lit", "y": 180},
+    "books=0,candles=1,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_lit", "y": 270},
 
-    "has_book=true,facing=north,candles=2,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_two"},
-    "has_book=true,facing=east,candles=2,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_two", "y": 90},
-    "has_book=true,facing=south,candles=2,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_two", "y": 180},
-    "has_book=true,facing=west,candles=2,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_two", "y": 270},
+    "books=0,candles=1,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_unlit"},
+    "books=0,candles=1,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_unlit", "y": 90},
+    "books=0,candles=1,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_unlit", "y": 180},
+    "books=0,candles=1,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_primary_regular_unlit", "y": 270},
 
-    "has_book=true,facing=north,candles=3,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three"},
-    "has_book=true,facing=east,candles=3,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three", "y": 90},
-    "has_book=true,facing=south,candles=3,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three", "y": 180},
-    "has_book=true,facing=west,candles=3,lit=false" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three", "y": 270},
+    "books=0,candles=2,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_lit"},
+    "books=0,candles=2,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_lit", "y": 90},
+    "books=0,candles=2,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_lit", "y": 180},
+    "books=0,candles=2,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_lit", "y": 270},
 
-    "has_book=true,facing=north,candles=3,lit=true" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three_lit"},
-    "has_book=true,facing=east,candles=3,lit=true" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three_lit", "y": 90},
-    "has_book=true,facing=south,candles=3,lit=true" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three_lit", "y": 180},
-    "has_book=true,facing=west,candles=3,lit=true" : {"model":  "rhodium:block/alchemy_table_with_book_candle_three_lit", "y": 270}
+    "books=0,candles=2,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_unlit"},
+    "books=0,candles=2,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_unlit", "y": 90},
+    "books=0,candles=2,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_unlit", "y": 180},
+    "books=0,candles=2,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_secondary_regular_unlit", "y": 270},
+
+    "books=0,candles=3,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_lit"},
+    "books=0,candles=3,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_lit", "y": 90},
+    "books=0,candles=3,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_lit", "y": 180},
+    "books=0,candles=3,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_lit", "y": 270},
+
+    "books=0,candles=3,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_unlit"},
+    "books=0,candles=3,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_unlit", "y": 90},
+    "books=0,candles=3,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_unlit", "y": 180},
+    "books=0,candles=3,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_null_candles_tertiary_regular_unlit", "y": 270},
+
+    "books=1,candles=0,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_lit"},
+    "books=1,candles=0,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_lit", "y": 90},
+    "books=1,candles=0,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_lit", "y": 180},
+    "books=1,candles=0,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_lit", "y": 270},
+
+    "books=1,candles=0,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_unlit"},
+    "books=1,candles=0,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_unlit", "y": 90},
+    "books=1,candles=0,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_unlit", "y": 180},
+    "books=1,candles=0,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_null_regular_unlit", "y": 270},
+
+    "books=1,candles=1,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_lit"},
+    "books=1,candles=1,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_lit", "y": 90},
+    "books=1,candles=1,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_lit", "y": 180},
+    "books=1,candles=1,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_lit", "y": 270},
+
+    "books=1,candles=1,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_unlit"},
+    "books=1,candles=1,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_unlit", "y": 90},
+    "books=1,candles=1,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_unlit", "y": 180},
+    "books=1,candles=1,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_primary_regular_unlit", "y": 270},
+
+    "books=1,candles=2,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_lit"},
+    "books=1,candles=2,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_lit", "y": 90},
+    "books=1,candles=2,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_lit", "y": 180},
+    "books=1,candles=2,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_lit", "y": 270},
+
+    "books=1,candles=2,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_unlit"},
+    "books=1,candles=2,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_unlit", "y": 90},
+    "books=1,candles=2,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_unlit", "y": 180},
+    "books=1,candles=2,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_secondary_regular_unlit", "y": 270},
+
+    "books=1,candles=3,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_lit"},
+    "books=1,candles=3,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_lit", "y": 90},
+    "books=1,candles=3,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_lit", "y": 180},
+    "books=1,candles=3,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_lit", "y": 270},
+
+    "books=1,candles=3,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_unlit"},
+    "books=1,candles=3,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_unlit", "y": 90},
+    "books=1,candles=3,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_unlit", "y": 180},
+    "books=1,candles=3,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_primary_candles_tertiary_regular_unlit", "y": 270},
+
+
+
+    "books=2,candles=0,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_lit"},
+    "books=2,candles=0,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_lit", "y": 90},
+    "books=2,candles=0,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_lit", "y": 180},
+    "books=2,candles=0,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_lit", "y": 270},
+
+    "books=2,candles=0,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_unlit"},
+    "books=2,candles=0,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_unlit", "y": 90},
+    "books=2,candles=0,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_unlit", "y": 180},
+    "books=2,candles=0,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_null_regular_unlit", "y": 270},
+
+    "books=2,candles=1,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_lit"},
+    "books=2,candles=1,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_lit", "y": 90},
+    "books=2,candles=1,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_lit", "y": 180},
+    "books=2,candles=1,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_lit", "y": 270},
+
+    "books=2,candles=1,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_unlit"},
+    "books=2,candles=1,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_unlit", "y": 90},
+    "books=2,candles=1,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_unlit", "y": 180},
+    "books=2,candles=1,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_primary_regular_unlit", "y": 270},
+
+    "books=2,candles=2,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_lit"},
+    "books=2,candles=2,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_lit", "y": 90},
+    "books=2,candles=2,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_lit", "y": 180},
+    "books=2,candles=2,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_lit", "y": 270},
+
+    "books=2,candles=2,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_unlit"},
+    "books=2,candles=2,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_unlit", "y": 90},
+    "books=2,candles=2,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_unlit", "y": 180},
+    "books=2,candles=2,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_secondary_regular_unlit", "y": 270},
+
+    "books=2,candles=3,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_lit"},
+    "books=2,candles=3,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_lit", "y": 90},
+    "books=2,candles=3,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_lit", "y": 180},
+    "books=2,candles=3,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_lit", "y": 270},
+
+    "books=2,candles=3,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_unlit"},
+    "books=2,candles=3,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_unlit", "y": 90},
+    "books=2,candles=3,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_unlit", "y": 180},
+    "books=2,candles=3,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_secondary_candles_tertiary_regular_unlit", "y": 270},
+
+    "books=3,candles=0,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_lit"},
+    "books=3,candles=0,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_lit", "y": 90},
+    "books=3,candles=0,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_lit", "y": 180},
+    "books=3,candles=0,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_lit", "y": 270},
+
+    "books=3,candles=0,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_unlit"},
+    "books=3,candles=0,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_unlit", "y": 90},
+    "books=3,candles=0,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_unlit", "y": 180},
+    "books=3,candles=0,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_null_regular_unlit", "y": 270},
+
+    "books=3,candles=1,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_lit"},
+    "books=3,candles=1,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_lit", "y": 90},
+    "books=3,candles=1,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_lit", "y": 180},
+    "books=3,candles=1,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_lit", "y": 270},
+
+    "books=3,candles=1,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_unlit"},
+    "books=3,candles=1,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_unlit", "y": 90},
+    "books=3,candles=1,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_unlit", "y": 180},
+    "books=3,candles=1,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_primary_regular_unlit", "y": 270},
+
+    "books=3,candles=2,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_lit"},
+    "books=3,candles=2,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_lit", "y": 90},
+    "books=3,candles=2,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_lit", "y": 180},
+    "books=3,candles=2,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_lit", "y": 270},
+
+    "books=3,candles=2,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_unlit"},
+    "books=3,candles=2,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_unlit", "y": 90},
+    "books=3,candles=2,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_unlit", "y": 180},
+    "books=3,candles=2,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_secondary_regular_unlit", "y": 270},
+
+    "books=3,candles=3,lit=true,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_lit"},
+    "books=3,candles=3,lit=true,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_lit", "y": 90},
+    "books=3,candles=3,lit=true,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_lit", "y": 180},
+    "books=3,candles=3,lit=true,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_lit", "y": 270},
+
+    "books=3,candles=3,lit=false,facing=north" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_unlit"},
+    "books=3,candles=3,lit=false,facing=east" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_unlit", "y": 90},
+    "books=3,candles=3,lit=false,facing=south" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_unlit", "y": 180},
+    "books=3,candles=3,lit=false,facing=west" : {"model":  "rhodium:block/alchemy_table_books_tertiary_candles_tertiary_regular_unlit", "y": 270}
 
   }
 

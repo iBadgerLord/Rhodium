@@ -2,8 +2,6 @@ package net.ibadgerlord.rhodium;
 
 import net.fabricmc.api.ModInitializer;
 import net.ibadgerlord.rhodium.util.init.*;
-import net.ibadgerlord.rhodium.world.feature.RhodiumConfiguredFeatures;
-import net.ibadgerlord.rhodium.world.gen.RhodiumWorldGen;
 
 public class Rhodium implements ModInitializer {
 
@@ -19,8 +17,6 @@ public class Rhodium implements ModInitializer {
         RhodiumRecipeRegistry.registerRhodiumRecipes();
 
         RhodiumParticleRegistry.registerRhodiumParticles();
-
-        RhodiumWorldGen.generateModWorldGen();
     }
 
 }
