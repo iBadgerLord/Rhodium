@@ -1,0 +1,22 @@
+{
+
+  "variants": {
+
+    "books=1,facing=north" : {"model":  "rhodium:block/cursed_book_primary"},
+    "books=1,facing=east" : {"model":  "rhodium:block/cursed_book_primary", "y": 90},
+    "books=1,facing=south" : {"model":  "rhodium:block/cursed_book_primary", "y": 180},
+    "books=1,facing=west" : {"model":  "rhodium:block/cursed_book_primary", "y": 270},
+
+    "books=2,facing=north" : {"model":  "rhodium:block/cursed_book_secondary"},
+    "books=2,facing=east" : {"model":  "rhodium:block/cursed_book_secondary", "y": 90},
+    "books=2,facing=south" : {"model":  "rhodium:block/cursed_book_secondary", "y": 180},
+    "books=2,facing=west" : {"model":  "rhodium:block/cursed_book_secondary", "y": 270},
+
+    "books=3,facing=north" : {"model":  "rhodium:block/cursed_book_tertiary"},
+    "books=3,facing=east" : {"model":  "rhodium:block/cursed_book_tertiary", "y": 90},
+    "books=3,facing=south" : {"model":  "rhodium:block/cursed_book_tertiary", "y": 180},
+    "books=3,facing=west" : {"model":  "rhodium:block/cursed_book_tertiary", "y": 270}
+
+  }
+
+}

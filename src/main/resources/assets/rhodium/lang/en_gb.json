@@ -5,5 +5,7 @@
   "item.rhodium.grand_potion" : "Grand Potion",
 
   "block.rhodium.alchemy_table" : "Alchemy Table",
-  "container.alchemy_table": "Alchemy Table"
+  "container.alchemy_table": "Alchemy Table",
+
+  "block.rhodium.cursed_book" : "Cursed Book"
 }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N#N",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "rhodium:alchemy_table"
+  }
+}

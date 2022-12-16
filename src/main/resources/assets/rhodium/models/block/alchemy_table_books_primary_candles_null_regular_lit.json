@@ -22,7 +22,7 @@
 			}
 		},
 		{
-			"name": "book_top",
+			"name": "book_primary_top",
 			"from": [3, 14.003, 2],
 			"to": [10, 14.003, 12],
 			"rotation": {"angle": -22.5, "axis": "y", "origin": [6.5, 12, 7]},
@@ -31,8 +31,8 @@
 				"east": {"uv": [0, 0, 5, 0], "texture": "#3"},
 				"south": {"uv": [0, 0, 3.5, 0], "texture": "#3"},
 				"west": {"uv": [0, 0, 5, 0], "texture": "#3"},
-				"up": {"uv": [3.5, 5, 0, 0], "rotation": 180, "texture": "#3"},
-				"down": {"uv": [7, 0, 3.5, 5], "rotation": 180, "texture": "#3"}
+				"up": {"uv": [3.5, 5, 0, 0], "texture": "#3"},
+				"down": {"uv": [7, 0, 3.5, 5], "texture": "#3"}
 			}
 		},
 		{
@@ -43,14 +43,14 @@
 			"faces": {
 				"north": {"uv": [0, 11, 3, 12], "texture": "#3"},
 				"east": {"uv": [0.5, 5, 4.5, 6], "texture": "#3"},
-				"south": {"uv": [0, 12, 3, 13], "texture": "#3"},
-				"west": {"uv": [0, 10, 4, 11], "texture": "#3"},
-				"up": {"uv": [3.5, 4.5, 0.5, 0.5], "rotation": 180, "texture": "#3"},
-				"down": {"uv": [7, 0.5, 4, 4.5], "rotation": 180, "texture": "#3"}
+				"south": {"uv": [7, 11, 10, 12], "texture": "#3"},
+				"west": {"uv": [7, 10, 11, 11], "texture": "#3"},
+				"up": {"uv": [3, 4.5, 0, 0.5], "texture": "#3"},
+				"down": {"uv": [6.5, 0.5, 3.5, 4.5], "texture": "#3"}
 			}
 		},
 		{
-			"name": "book_bottom",
+			"name": "book_primary_bottom",
 			"from": [3, 12.001, 2],
 			"to": [10, 12.001, 12],
 			"rotation": {"angle": -22.5, "axis": "y", "origin": [6.5, 12, 7]},
@@ -59,12 +59,12 @@
 				"east": {"uv": [0, 0, 5, 0], "texture": "#3"},
 				"south": {"uv": [0, 0, 3.5, 0], "texture": "#3"},
 				"west": {"uv": [0, 0, 5, 0], "texture": "#3"},
-				"up": {"uv": [7, 5, 3.5, 0], "rotation": 180, "texture": "#3"},
-				"down": {"uv": [7, 0, 3.5, 5], "rotation": 180, "texture": "#3"}
+				"up": {"uv": [14, 5, 10.5, 0], "texture": "#3"},
+				"down": {"uv": [10.5, 0, 7, 5], "texture": "#3"}
 			}
 		},
 		{
-			"name": "book_spine",
+			"name": "book_primary_spine",
 			"from": [10, 12.002, 2],
 			"to": [10, 14.002, 12],
 			"rotation": {"angle": -22.5, "axis": "y", "origin": [6.5, 12, 7]},

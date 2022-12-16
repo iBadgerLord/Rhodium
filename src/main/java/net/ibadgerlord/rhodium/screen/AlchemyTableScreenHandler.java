@@ -1,6 +1,8 @@
 package net.ibadgerlord.rhodium.screen;
 
 import net.ibadgerlord.rhodium.screen.slot.AlchemyTableOutput;
+import net.ibadgerlord.rhodium.screen.slot.AlchemyTableSlot;
+import net.ibadgerlord.rhodium.screen.slot.AlchemyTableSubject;
 import net.ibadgerlord.rhodium.util.init.RhodiumScreenHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,15 +31,16 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
         this.propertyDelegate = propertyDelegate;
 
         // Where our slots are placed
-        this.addSlot(new Slot(inventory, 0, 24, 17));
-        this.addSlot(new Slot(inventory, 1, 74, 17));
-        this.addSlot(new Slot(inventory, 2, 24, 53));
-        this.addSlot(new Slot(inventory, 3, 74, 53));
-        this.addSlot(new Slot(inventory, 4, 49, 35));
-        this.addSlot(new AlchemyTableOutput(inventory, 5, 132, 35));
+        this.addSlot(new AlchemyTableSlot(inventory, 0, 24, 17)); // regular slot for alchemy table
+        this.addSlot(new AlchemyTableSlot(inventory, 1, 74, 17)); // regular slot for alchemy table
+        this.addSlot(new AlchemyTableSlot(inventory, 2, 24, 53)); // regular slot for alchemy table
+        this.addSlot(new AlchemyTableSlot(inventory, 3, 74, 53)); // regular slot for alchemy table
+        this.addSlot(new AlchemyTableSubject(inventory, 4, 49, 35)); // subject slot for alchemy table
+        this.addSlot(new AlchemyTableOutput(inventory, 5, 132, 35)); // output slot for alchemy table
+
+        // Adding the player inventory
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
-
         addProperties(propertyDelegate);
     }
 
@@ -57,26 +60,7 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(invSlot);
-        if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (originalStack.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
-        }
-        return newStack;
+        return ItemStack.EMPTY;
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

@@ -1,11 +1,13 @@
 {
+
   "type": "rhodium:alchemy_table",
+
   "ingredients": [
     {
       "item": "minecraft:small_amethyst_bud"
     },
     {
-      "item": "rhodium:warped_wart"
+      "item": "minecraft:warped_roots"
     },
     {
       "item": "minecraft:nether_wart"
@@ -17,7 +19,9 @@
       "item": "rhodium:grand_bottle"
     }
   ],
+
   "output": {
     "item": "rhodium:grand_potion"
   }
+
 }

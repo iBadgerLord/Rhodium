@@ -49,7 +49,6 @@ public class AlchemyTableBlockEntity extends BlockEntity implements NamedScreenH
                 case 0: {
                     AlchemyTableBlockEntity.this.progress = value;
                     break;
-
                 }
             }
         }

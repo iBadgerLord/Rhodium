@@ -2,9 +2,6 @@ package net.ibadgerlord.rhodium.blocks;
 
 import net.ibadgerlord.rhodium.blocks.entity.AlchemyTableBlockEntity;
 import net.ibadgerlord.rhodium.util.init.RhodiumBlockEntityRegistry;
-import net.ibadgerlord.rhodium.util.init.RhodiumParticleRegistry;
-import net.ibadgerlord.rhodium.util.other.FlameType;
-import net.ibadgerlord.rhodium.util.other.RhodiumProperties;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,9 +11,9 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
@@ -30,13 +27,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final IntProperty BOOKS = IntProperty.of("books", 0, 3);
     public static final IntProperty CANDLES = IntProperty.of("candles", 0, 3);
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
-    public static final EnumProperty<FlameType> FLAME_TYPE = RhodiumProperties.FLAME_TYPE;
 
     protected static final VoxelShape ALCHEMY_TABLE_BASE = Block.createCuboidShape(0, 0, 0, 16, 12, 16);
     protected static final VoxelShape BOOKS_PRIMARY_N = Block.createCuboidShape(3, 12, 2, 10, 14.003, 12);
@@ -133,7 +132,7 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
     public AlchemyTableBlock(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)
-                .with(BOOKS, 0).with(CANDLES, 0).with(LIT, false).with(FLAME_TYPE, FlameType.NONE));
+                .with(BOOKS, 0).with(CANDLES, 0).with(LIT, false));
     }
 
     @Override
@@ -149,9 +148,12 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             } else if (state.get(BOOKS) >= 3) {
                 if (state.get(LIT)) {
-                    NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                    if (screenHandlerFactory != null) {
-                        player.openHandledScreen(screenHandlerFactory);
+                    if (world.isClient) {
+                        return ActionResult.SUCCESS;
+                    } else {
+                        player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+                        player.incrementStat(Stats.INTERACT_WITH_CARTOGRAPHY_TABLE);
+                        return ActionResult.CONSUME;
                     }
                 } else {
                     return ActionResult.FAIL;
@@ -167,9 +169,12 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             } else if (state.get(CANDLES) >= 3) {
                 if (state.get(LIT)) {
-                    NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                    if (screenHandlerFactory != null) {
-                        player.openHandledScreen(screenHandlerFactory);
+                    if (world.isClient) {
+                        return ActionResult.SUCCESS;
+                    } else {
+                        player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+                        player.incrementStat(Stats.INTERACT_WITH_CARTOGRAPHY_TABLE);
+                        return ActionResult.CONSUME;
                     }
                 } else {
                     return ActionResult.FAIL;
@@ -192,87 +197,18 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
                             itemStack.decrement(1);
                         }
                     }
-                    world.setBlockState(pos, state.with(LIT, true).with(FLAME_TYPE, FlameType.REGULAR_FLAME), Block.NOTIFY_ALL);
+                    world.setBlockState(pos, state.with(LIT, true), Block.NOTIFY_ALL);
                     world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 } else {
                     return ActionResult.FAIL;
                 }
             } else if (state.get(LIT)) {
-                NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                if (screenHandlerFactory != null) {
-                    player.openHandledScreen(screenHandlerFactory);
-                }
-            }
-        } else if ((itemStack.isOf(Items.SOUL_SAND) || itemStack.isOf(Items.SOUL_SOIL))) {
-            if (state.get(FLAME_TYPE) != FlameType.SOUL_FLAME) {
-                if (state.get(LIT)) {
-                    if (!player.isCreative()) {
-                        itemStack.decrement(1);
-                    }
-                    world.playSound(null, pos, SoundEvents.PARTICLE_SOUL_ESCAPE, SoundCategory.BLOCKS, 2.0f, 0.5f + world.random.nextFloat() * 1.2f); // Used as jingle for noe
-                    world.setBlockState(pos, state.with(FLAME_TYPE, FlameType.SOUL_FLAME), Block.NOTIFY_ALL);
-                    world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                    if (state.get(CANDLES) == 1) {
-                        if (state.get(FACING) == Direction.NORTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.EAST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.1875, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.SOUTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.1875, pos.getY() + 1.25, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.WEST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                        }
-                    }
-                    if (state.get(CANDLES) == 2) {
-                        if (state.get(FACING) == Direction.NORTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.75, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.625, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.EAST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.25, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.1875, pos.getY() + 1.1875, pos.getZ() + 0.625, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.SOUTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.25, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.375, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.WEST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.75, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.375, 0.0f, 0.0f, 0.0f);
-                        }
-                    }
-                    if (state.get(CANDLES) == 3) {
-                        if (state.get(FACING) == Direction.NORTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.6875, pos.getY() + 1.0625, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.6875, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.EAST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.1875, pos.getY() + 1.0625, pos.getZ() + 0.6875, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.3125, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.SOUTH) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.3125, pos.getY() + 1.0625, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.1875, pos.getY() + 1.1875, pos.getZ() + 0.3125, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                        }
-                        if (state.get(FACING) == Direction.WEST) {
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.8125, pos.getY() + 1.0625, pos.getZ() + 0.3125, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.6875, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                            world.addParticle(ParticleTypes.SOUL, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                        }
-                    }
+                if (world.isClient) {
+                    return ActionResult.SUCCESS;
                 } else {
-                    return ActionResult.FAIL;
-                }
-            } else if (state.get(FLAME_TYPE) == FlameType.SOUL_FLAME) {
-                NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                if (screenHandlerFactory != null) {
-                    player.openHandledScreen(screenHandlerFactory);
+                    player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+                    player.incrementStat(Stats.INTERACT_WITH_CARTOGRAPHY_TABLE);
+                    return ActionResult.CONSUME;
                 }
             }
         } else if (itemStack.isOf(Items.WOODEN_SHOVEL) || itemStack.isOf(Items.STONE_SHOVEL)
@@ -285,19 +221,79 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
                     }
                 }
                 world.playSound(null, pos, SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                world.setBlockState(pos, state.with(LIT, false).with(FLAME_TYPE, FlameType.NONE), Block.NOTIFY_ALL);
+                if (state.get(CANDLES) == 1) {
+                    if (state.get(FACING) == Direction.NORTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.EAST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.SOUTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.WEST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                }
+                if (state.get(CANDLES) == 2) {
+                    if (state.get(FACING) == Direction.NORTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.75, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.625, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.EAST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.1875, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.125, pos.getY() + 1.1875, pos.getZ() + 0.625, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.SOUTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.0625, pos.getY() + 1.25, pos.getZ() + 0.1875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.3125, pos.getY() + 1.1875, pos.getZ() + 0.125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.WEST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.75, pos.getY() + 1.25, pos.getZ() + 0.0625, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.3125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                }
+                if (state.get(CANDLES) == 3) {
+                    if (state.get(FACING) == Direction.NORTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.6875, pos.getY() + 1.0625, pos.getZ() + 0.8125, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.6875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.EAST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.1875, pos.getY() + 1.0625, pos.getZ() + 0.6875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.3125, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.SOUTH) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.3125, pos.getY() + 1.0625, pos.getZ() + 0.1875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.1875, pos.getY() + 1.1875, pos.getZ() + 0.3125, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                    if (state.get(FACING) == Direction.WEST) {
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.8125, pos.getY() + 1.0625, pos.getZ() + 0.3125, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.6875, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0d, 0.10000000149011612d, 0.0d);
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0d, 0.10000000149011612d, 0.0d);
+                    }
+                }
+                world.setBlockState(pos, state.with(LIT, false), Block.NOTIFY_ALL);
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             } else {
-                NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                if (screenHandlerFactory != null) {
-                    player.openHandledScreen(screenHandlerFactory);
+                if (world.isClient) {
+                    return ActionResult.SUCCESS;
+                } else {
+                    player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+                    player.incrementStat(Stats.INTERACT_WITH_CARTOGRAPHY_TABLE);
+                    return ActionResult.CONSUME;
                 }
             }
         } else {
             if (state.get(LIT)) {
-                NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-                if (screenHandlerFactory != null) {
-                    player.openHandledScreen(screenHandlerFactory);
+                if (world.isClient) {
+                    return ActionResult.SUCCESS;
+                } else {
+                    player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
+                    player.incrementStat(Stats.INTERACT_WITH_CARTOGRAPHY_TABLE);
+                    return ActionResult.CONSUME;
                 }
             } else {
                 return ActionResult.FAIL;
@@ -514,8 +510,8 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
             }
         }
 
-        // regular fire particles
-        if ((state.get(LIT).booleanValue()) && (state.get(FLAME_TYPE) == FlameType.REGULAR_FLAME)) {
+        // fire particles
+        if ((state.get(LIT).booleanValue())) {
             if (state.get(CANDLES) == 1) {
                 if (state.get(FACING) == Direction.NORTH) {
                     world.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
@@ -568,64 +564,6 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
                     world.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.8125, pos.getY() + 1.0625, pos.getZ() + 0.3125, 0.0f, 0.0f, 0.0f);
                     world.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.6875, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
                     world.addParticle(ParticleTypes.SMALL_FLAME, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                }
-            }
-        }
-
-        // soul fire particles
-        if ((state.get(LIT).booleanValue()) && (state.get(FLAME_TYPE) == FlameType.SOUL_FLAME)) {
-            if (state.get(CANDLES) == 1) {
-                if (state.get(FACING) == Direction.NORTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.EAST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.1875, pos.getY() + 1.25, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.SOUTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.1875, pos.getY() + 1.25, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.WEST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.8125, pos.getY() + 1.25, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                }
-            }
-            if (state.get(CANDLES) == 2) {
-                if (state.get(FACING) == Direction.NORTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.75, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.625, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.EAST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.25, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.1875, pos.getY() + 1.1875, pos.getZ() + 0.625, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.SOUTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.25, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.375, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.WEST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.75, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.375, 0.0f, 0.0f, 0.0f);
-                }
-            }
-            if (state.get(CANDLES) == 3) {
-                if (state.get(FACING) == Direction.NORTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.6875, pos.getY() + 1.0625, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.8125, pos.getY() + 1.1875, pos.getZ() + 0.6875, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.EAST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.1875, pos.getY() + 1.0625, pos.getZ() + 0.6875, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.3125, pos.getY() + 1.1875, pos.getZ() + 0.8125, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.875, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.SOUTH) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.3125, pos.getY() + 1.0625, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.1875, pos.getY() + 1.1875, pos.getZ() + 0.3125, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.125, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
-                }
-                if (state.get(FACING) == Direction.WEST) {
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.8125, pos.getY() + 1.0625, pos.getZ() + 0.3125, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.6875, pos.getY() + 1.1875, pos.getZ() + 0.1875, 0.0f, 0.0f, 0.0f);
-                    world.addParticle(RhodiumParticleRegistry.SMALL_SOUL_FIRE_FLAME, pos.getX() + 0.875, pos.getY() + 1.25, pos.getZ() + 0.125, 0.0f, 0.0f, 0.0f);
                 }
             }
         }
@@ -969,7 +907,7 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return (BlockState)((BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite()))
-                .with(BOOKS, 0).with(CANDLES, 0).with(LIT, false).with(FLAME_TYPE, FlameType.NONE);
+                .with(BOOKS, 0).with(CANDLES, 0).with(LIT, false);
     }
 
     @Override
@@ -984,10 +922,10 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(BOOKS, FACING, CANDLES, LIT, FLAME_TYPE);
+        builder.add(BOOKS, FACING, CANDLES, LIT);
     }
 
-    // Block Entity
+    // Block entity
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
@@ -995,6 +933,7 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof AlchemyTableBlockEntity) {
@@ -1016,5 +955,7 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, RhodiumBlockEntityRegistry.ALCHEMY_TABLE, AlchemyTableBlockEntity::tick);
     }
+
+    // General attributes
 
 }

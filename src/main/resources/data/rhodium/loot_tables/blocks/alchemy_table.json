@@ -1,0 +1,156 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rhodium:alchemy_table"
+        }
+      ],
+      "rolls": 1.0
+    },
+
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "books": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "books": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "books": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ],
+      "rolls": 1.0
+    },
+
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "candles": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:candle"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "candles": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "name": "minecraft:candle"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "rhodium:alchemy_table",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "candles": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "name": "minecraft:candle"
+        }
+      ],
+      "rolls": 1.0
+    }
+
+  ]
+}
