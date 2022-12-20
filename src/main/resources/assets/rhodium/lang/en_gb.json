@@ -8,6 +8,8 @@
   "item.rhodium.grand_water_bottle" : "Grand Water Bottle",
   "item.rhodium.cursed_water_bottle" : "Cursed Water Bottle",
 
+  "item.rhodium.test_grand_potion" : "TEST Grand Potion",
+
   "block.rhodium.alchemy_table" : "Alchemy Table",
   "container.alchemy_table": "Alchemy Table"
 }

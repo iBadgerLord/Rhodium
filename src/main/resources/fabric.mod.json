@@ -22,7 +22,7 @@
       "net.ibadgerlord.rhodium.Rhodium"
     ],
     "client": [
-      "net.ibadgerlord.rhodium.RhodiumClient"
+      "net.ibadgerlord.rhodium.client.RhodiumClient"
     ]
   },
   "mixins": [
