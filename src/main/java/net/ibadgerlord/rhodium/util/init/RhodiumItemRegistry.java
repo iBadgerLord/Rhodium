@@ -2,10 +2,13 @@ package net.ibadgerlord.rhodium.util.init;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.ibadgerlord.rhodium.Rhodium;
-import net.ibadgerlord.rhodium.items.grandpotion.GrandPotionItem;
+import net.ibadgerlord.rhodium.items.CursedPotionItem;
+import net.ibadgerlord.rhodium.items.GrandPotionItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import static net.minecraft.entity.effect.StatusEffects.POISON;
 
 
 public class RhodiumItemRegistry {
@@ -18,9 +21,19 @@ public class RhodiumItemRegistry {
     // Item naming and registering
     public static final Item GRAND_BOTTLE = registerItem("grand_bottle",
             new Item(new FabricItemSettings().maxCount(16).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+    public static final Item CURSED_BOTTLE = registerItem("cursed_bottle",
+            new Item(new FabricItemSettings().maxCount(16).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
 
     public static final Item GRAND_POTION = registerItem("grand_potion",
             new GrandPotionItem(new FabricItemSettings().maxCount(1).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+    public static final Item CURSED_POTION = registerItem("cursed_potion",
+            new CursedPotionItem( new FabricItemSettings().maxCount(1).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+
+    public static final Item GRAND_WATER_BOTTLE = registerItem("grand_water_bottle",
+            new Item(new FabricItemSettings().maxCount(1).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+    public static final Item CURSED_WATER_BOTTLE = registerItem("cursed_water_bottle",
+            new Item(new FabricItemSettings().maxCount(1).group(RhodiumGroupRegistry.RHODIUM_GROUP)));
+
 
     public static void registerRhodiumItems() { }
 

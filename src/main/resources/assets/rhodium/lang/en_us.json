@@ -2,10 +2,12 @@
   "itemGroup.rhodium.rhodium" : "Rhodium",
 
   "item.rhodium.grand_bottle" : "Grand Bottle",
+  "item.rhodium.cursed_bottle" : "Cursed Bottle",
   "item.rhodium.grand_potion" : "Grand Potion",
+  "item.rhodium.cursed_potion" : "Cursed Potion",
+  "item.rhodium.grand_water_bottle" : "Grand Water Bottle",
+  "item.rhodium.cursed_water_bottle" : "Cursed Water Bottle",
 
   "block.rhodium.alchemy_table" : "Alchemy Table",
-  "container.alchemy_table": "Alchemy Table",
-
-  "block.rhodium.cursed_book" : "Cursed Book"
+  "container.alchemy_table": "Alchemy Table"
 }

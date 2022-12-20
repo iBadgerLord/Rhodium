@@ -11,12 +11,12 @@ public class Rhodium implements ModInitializer {
     public void onInitialize() {
         RhodiumItemRegistry.registerRhodiumItems();
         RhodiumBlockRegistry.registerRhodiumBlocks();
+        RhodiumPotionRegistry.registerRhodiumPotions();
+        RhodiumGroupRegistry.registerRhodiumGroups();
 
         RhodiumBlockEntityRegistry.registerRhodiumBlockEntities();
         RhodiumScreenHandlerRegistry.registerRhodiumScreenHandlers();
         RhodiumRecipeRegistry.registerRhodiumRecipes();
-
-        RhodiumParticleRegistry.registerRhodiumParticles();
     }
 
 }

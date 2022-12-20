@@ -1,11 +1,11 @@
-package net.ibadgerlord.rhodium.items.grandpotion;
+package net.ibadgerlord.rhodium.items;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class GrandPotionItem extends Item {
+public class CursedPotionItem extends Item {
 
-    public GrandPotionItem(Settings settings) {
+    public CursedPotionItem(Settings settings) {
         super(settings);
     }
 

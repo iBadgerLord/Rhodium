@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rhodium:item/cursed_book"
+    "layer0": "rhodium:item/cursed_bottle"
   }
 }

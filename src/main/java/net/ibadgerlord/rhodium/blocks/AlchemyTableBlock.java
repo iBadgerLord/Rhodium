@@ -956,6 +956,4 @@ public class AlchemyTableBlock extends BlockWithEntity implements BlockEntityPro
         return checkType(type, RhodiumBlockEntityRegistry.ALCHEMY_TABLE, AlchemyTableBlockEntity::tick);
     }
 
-    // General attributes
-
 }
